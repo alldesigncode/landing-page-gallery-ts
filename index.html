@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.data.title %></title>
+  </head>
+  <body>
+    <div class="main">
+      <header class="header">
+        <div class="logo">Logo</div>
+        <ul class="nav">
+          <li class="nav-item"><a href="" class="nav-link">Reviews</a></li>
+          <li class="nav-item"><a href="" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
+        </ul>
+      </header>
+      <div class="content">
+        <div class="section-intro">
+          <div class="title-small">Our intro</div>
+          <div class="title-big">Our Big Title</div>
+          <div class="intro-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ex
+            sunt itaque hic reprehenderit.
+          </div>
+          <button class="button btn">Get started</button>
+        </div>
+        <div class="showcase"></div>
+      </div>
+      <div class="bottom">bottom content</div>
+    </div>
+    <script>
+      window.exampleApiUrl = "<%= htmlWebpackPlugin.options.data.apiContext %>";
+    </script>
+  </body>
+</html>

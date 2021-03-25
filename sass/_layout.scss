@@ -1,0 +1,255 @@
+$grid-columns: 12;
+$space: 10rem;
+
+.main {
+  // Defaults
+  --grid-cols: #{$grid-columns};
+  --grid-space: #{$space};
+
+  display: grid;
+  overflow: hidden;
+
+  // 1350 / 12 = 112.5 so each column will have 112.5px width.
+  grid-template-columns: [space-left-start] minmax(var(--grid-space), 1fr) [space-left-end main-start] repeat(
+      var(--grid-cols),
+      [col-start] 11.25rem [col-end]
+    ) [main-end space-right-start] minmax(var(--grid-space), 1fr) [space-right-end];
+
+  & > * {
+    grid-column-start: main-start;
+    grid-column-end: main-end;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+
+  .logo {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .nav {
+    list-style: none;
+    display: flex;
+    justify-items: center;
+
+    .nav-item {
+      padding: 0.5rem 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      color: $darkgrey;
+    }
+  }
+}
+
+.content {
+  margin: 8rem 0;
+  display: grid;
+  grid-template-columns: 45rem 1fr;
+  grid-column-gap: 3rem;
+  height: 50rem; // check this later if needed
+  position: relative;
+  align-items: center;
+
+  .section-intro {
+    grid-column-end: 2;
+    display: grid;
+    grid-row-gap: 2rem;
+    grid-template-rows: repeat(4, min-content);
+
+    .title-big,
+    .title-small {
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+
+    .title-small { color: $pink;}
+    .title-big {
+      color: $darkgrey;
+      font-size: 4.5rem;
+    }
+
+    .intro-text {
+      font-size: 2.5rem;
+      line-height: 1.6;
+      color: $lightgrey;
+    }
+
+    button.btn {
+      display: inline-block;
+      outline: none;
+      border: none;
+      width: fit-content;
+      color: $white;
+      background-color: $pink1;
+      padding: 1.5rem 2.5rem;
+      border-radius: .7rem;
+      text-transform: capitalize;
+    }
+  }
+
+  .showcase { 
+    grid-column: 2 / -1;
+    align-self: center;
+    overflow: hidden;
+
+    .collection-actions {
+      margin: 20px;
+      display: flex;
+      align-items: center;
+
+      button {
+        display: inline-block;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: $white;
+        background-color: $pink1;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-transform: capitalize;
+        transition: all .1s ease-in-out;
+
+        & > * {
+          fill: $white;
+          width: 30px;
+          height: 30px;
+        }
+
+        &:hover {transform: scale(1.1)}
+        &:active {transform: scale(1)}
+      }
+
+      .progress {
+        margin-left: 2rem;
+        position: relative;
+        height: 0.7rem;
+        width: 20rem;
+        overflow: hidden;
+        border-radius: 3px;
+        background-color: $white;
+
+        .progress-line {
+          width: 0%;
+          height: inherit;
+          background-color: $pink1;
+        }
+      }
+
+    }
+
+    .collection {
+      display: flex;
+      overflow: hidden;
+      align-items: flex-end;
+      height: 600px;
+
+      .collection-img {
+        overflow: hidden;
+        width: 30rem;
+        height: 45rem;
+        border-radius: .5rem;
+        border-top-right-radius: 3.5rem;
+        margin: 0 2rem;
+        position: relative;
+        box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.1);
+
+        .overlay {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: rgb(39 39 39 / 40%);
+          transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .fig-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          top: 70%;
+          z-index: 100;
+          right: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          font-size: 3rem;
+
+          .fig-count,
+          .fig-line,
+          .fig-author {
+            z-index: 10;
+            color: $white;
+            transition: all 0.4s 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+          }
+
+          .fig-line {
+            position: absolute;
+            background: white;
+            width: 1px;
+            height: 0%;
+            top: 50%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+          }
+
+          .fig-author {
+            font-size: 2rem;
+            flex: 0 0 50%;
+            text-align: center;
+            opacity: 0;
+          }
+
+          .fig-count {
+            text-align: center;
+            flex: 0 0 20%;
+            opacity: 0;
+          }
+        
+        }
+
+        &.active {
+          .overlay {
+            top: 70%;
+          }
+
+          .fig-info {
+
+            .fig-author {
+              opacity: 1;
+            }
+
+            .fig-count {
+              opacity: 1;
+            }
+            
+            .fig-line {
+              height: 75%;
+            }
+          }
+        }
+        
+
+        img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
