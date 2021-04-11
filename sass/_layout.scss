@@ -50,12 +50,63 @@ $space: 10rem;
   }
 }
 
-.content {
-  margin: 8rem 0;
+.content,
+.bottom {
   display: grid;
   grid-template-columns: 45rem 1fr;
+}
+
+.bottom {
+  grid-column: main-start / -1;
+  overflow: hidden;
+  border-top-left-radius: 40px;
+  margin: 0 0 0 3rem;
+  height: calc(100vh - 79rem); // 76rem = total height of header + content (including margin)
+
+  .bottom-left {
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: #3c2d53;
+
+    .count {
+      font-size: 6rem;
+      flex: 0 0 7rem;
+    }
+
+    .line-wrapper {
+      flex: 0 0 20%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+
+      .line {
+        height: 100%;
+        width: 1px;
+        margin: 0 1rem;
+        background: $white;
+      }
+    }
+
+    .desc {
+      font-family: sans-serif;
+      font-weight: 300;
+      font-size: 1.4rem;
+      line-height: 1.7;
+      color: #e2e2e2;
+    }
+  }
+  .bottom-right {
+    background-color: rgba(147, 62, 162, 0.925);
+  }
+}
+
+.content {
+  display: grid;
   grid-column-gap: 3rem;
-  height: 50rem; // check this later if needed
+  height: auto; 
   position: relative;
   align-items: center;
 
@@ -173,7 +224,7 @@ $space: 10rem;
           height: 100%;
           z-index: 1;
           background-color: rgb(39 39 39 / 40%);
-          transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+          transition: all 0.6s 0.2s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         .fig-info {
@@ -193,7 +244,7 @@ $space: 10rem;
           .fig-author {
             z-index: 10;
             color: $white;
-            transition: all 0.4s 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+            transition: all 0.4s 0.2s cubic-bezier(0.65, 0, 0.35, 1);
           }
 
           .fig-line {
